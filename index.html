@@ -10,13 +10,13 @@
     <main>
         <h1>WordMixer</h1>
         <section>
-            <p><span id="tentativas">1</span> / 10</p>
+            <p><span id="tentativa">1</span> / 10</p>
             <p id="palavra">Palavra Selecionada</p>
             <p>Descubra Qual A Palavra.</p>
             <form>
                 <input type="text" id="user">
-                <input type="button" value="Enviar" onclick="tentar()">
-                <input type="button" value="Pular" onclick="pular()">
+                <input type="button" value="Enviar" onclick="game.jogar()">
+                <input type="button" value="Pular" onclick="game.pular()">
             </form>
         </section>
         <p>Score: <span id="score">0</span></p>

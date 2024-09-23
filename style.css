@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+@import "animation.css";
+
 *{
     padding: 0px;
     margin: 0px;
@@ -38,8 +40,10 @@ main{
         p:nth-child(1){
             background-color: aqua;
             align-self: flex-end;
+            width: 100px;
             padding: 10px;
             border-radius: 10px;
+            font-size: 1.2em;
         }
         p:nth-child(2){
             font-size: 2em;

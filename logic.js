@@ -1,83 +1,102 @@
-let tentativas = 1
-
 const PALAVRAS = [
     "terra",
     "agua",
     "fogo",
     "vento"
 ];
+const SCORE_INCREASE = 20;
 
-palavra_correta = null;
-user = document.getElementById("user");
-score = document.getElementById("score");
+class Game{
 
-document.body.onload = function(){
-    carregarPalavra();
-}
-
-function endGameScreen(){
-    let mensagem = "Fim De Jogo\n" + `Pontuação: ${score.textContent}`
-    alert(mensagem);
-}
-
-function acertar(){
-    carregarPalavra()
-    score.textContent = Number(score.textContent) + 20; 
-    user.value = "";
-    user.focus();
-}
-
-function errar(){
-    alert("errou");
-    setTentativa(++tentativas);
-}
-
-function tentar(){
-    if(user.value == palavra_correta){ acertar() }
-    else{ errar() }
-}
-
-
-function shuffle(o) {
-    for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-    return o;
-  }
-
-function embaralhar(palavra){
-    let palavra_embaralhada = "";
-    let array_palavra = String(palavra).split("");
-    let array_embaralhado = shuffle(array_palavra);
-
-    for (const item of array_embaralhado) {
-        palavra_embaralhada += item;
+    setScore(score){
+        this.score.textContent = score;
     }
-    return palavra_embaralhada;
-}
 
-function carregarPalavra(){
-    let random = PALAVRAS[Math.floor(Math.random() * PALAVRAS.length)];
-    palavra_correta = random;
-    let palavra_embaralhada = embaralhar(random);
-    document.getElementById("palavra").textContent = palavra_embaralhada;
-}
-
-
-function zerar(){
-    endGameScreen();
-    score.textContent = 0;
-    tentativas = 1;
-    document.getElementById("tentativas").textContent = 1;
-    carregarPalavra()
-}
-
-function setTentativa(tentativa){
-    if(tentativa > 10){ zerar() }
-    else{
-        document.getElementById("tentativas").textContent = tentativa;
+    setUser(user){
+        this.user.value = user;
     }
+
+    zerar(){
+        this.setTentativa(1);
+        this.setScore(0)
+        this.setUser("")
+        this.embaralharPalavra();
+    }
+
+    pular(){
+        this.embaralharPalavra();
+        this.setTentativa(this.getTentativa() + 1);
+    }
+
+    jogar(){
+        if(this.getUser() == this.palavra){
+            this.acertar()
+        }
+        else{ this.errar() }
+    }
+
+    errar(){
+        this.setTentativa(this.getTentativa() + 1);
+    }
+
+    acertar(){
+        this.setScore(this.getScore() + SCORE_INCREASE);
+        this.setUser("");
+        this.user.focus();
+        this.embaralharPalavra()
+    }
+
+
+    embaralharPalavra(){
+        function embaralhar(palavra){
+            function shuffle(o) {
+                for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+                return o;
+            }
+            let palavra_embaralhada = "";
+            let array_palavra = String(palavra).split("");
+            let array_embaralhado = shuffle(array_palavra);
+        
+            for (const item of array_embaralhado) {
+                palavra_embaralhada += item;
+            }
+            return palavra_embaralhada;
+        }
+        const random = PALAVRAS[Math.floor(Math.random() * PALAVRAS.length)];
+        this.palavra = random;
+        this.setPalavraEmbaralhada(embaralhar(random))
+    }
+
+    getTentativa(){return Number(this.tentativa.textContent);}
+    setTentativa(tentativa){
+        if(tentativa > 10){
+            alert("Fim De Jogo");
+            this.zerar()
+            return
+        }
+        this.tentativa.textContent = tentativa;
+    }
+
+    getScore(){return Number(this.score.textContent);}
+
+    getUser(){
+        return this.user.value;
+    }
+
+    constructor(){
+        this.tentativa = document.getElementById("tentativa");
+        this.score = document.getElementById("score");
+        this.user = document.getElementById("user");
+        this.palavra = null
+        this.palavra_embaralhada = document.getElementById("palavra");
+    }
+
+    setPalavraEmbaralhada(palavra){
+        this.palavra_embaralhada.textContent = palavra;
+    }
+
 }
 
-function pular(){
-    setTentativa(++tentativas)
-    carregarPalavra()
-}
+let game = new Game();
+
+document.body.onload = game.zerar();
