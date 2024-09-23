@@ -10,12 +10,12 @@
     <main>
         <h1>WordMixer</h1>
         <section>
-            <p id="tentativas">1/10</p>
-            <p >Palavra Selecionada</p>
+            <p><span id="tentativas">1</span> / 10</p>
+            <p id="palavra">Palavra Selecionada</p>
             <p>Descubra Qual A Palavra.</p>
             <form>
-                <input type="text">
-                <input type="button" value="Enviar">
+                <input type="text" id="user">
+                <input type="button" value="Enviar" onclick="tentar()">
                 <input type="button" value="Pular" onclick="pular()">
             </form>
         </section>
