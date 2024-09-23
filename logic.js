@@ -6,6 +6,15 @@ const PALAVRAS = [
 ];
 const SCORE_INCREASE = 20;
 
+function animationElement(seletor,name){
+    let selector = document.querySelector(seletor);
+    setInterval(function(){
+        selector.style.animationName = name;    
+    },100);
+    selector.style.animationName = "none";   
+}
+
+
 class Game{
 
     setScore(score){
@@ -22,10 +31,11 @@ class Game{
         this.setUser("")
         this.embaralharPalavra();
     }
-
+    
     pular(){
         this.embaralharPalavra();
         this.setTentativa(this.getTentativa() + 1);
+        animationElement("p","next")
     }
 
     jogar(){
@@ -37,6 +47,7 @@ class Game{
 
     errar(){
         this.setTentativa(this.getTentativa() + 1);
+        animationElement("p","next")
     }
 
     acertar(){
@@ -44,6 +55,7 @@ class Game{
         this.setUser("");
         this.user.focus();
         this.embaralharPalavra()
+        animationElement("p:last-child","increase")
     }
 
 
