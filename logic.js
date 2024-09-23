@@ -1,8 +1,8 @@
 const PALAVRAS = [
-    "terra",
-    "agua",
+    // "terra",
+    // "agua",
     "fogo",
-    "vento"
+    // "vento"
 ];
 const SCORE_INCREASE = 20;
 
@@ -76,7 +76,11 @@ class Game{
         }
         const random = PALAVRAS[Math.floor(Math.random() * PALAVRAS.length)];
         this.palavra = random;
-        this.setPalavraEmbaralhada(embaralhar(random))
+        let palavra_gerada = embaralhar(random);
+        while(palavra_gerada == this.palavra){
+            palavra_gerada = embaralhar(random)
+        }
+        this.setPalavraEmbaralhada(palavra_gerada)
     }
 
     getTentativa(){return Number(this.tentativa.textContent);}
