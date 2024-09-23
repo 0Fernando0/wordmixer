@@ -10,15 +10,17 @@
     <main>
         <h1>WordMixer</h1>
         <section>
-            <p>1/10</p>
+            <p id="tentativas">1/10</p>
             <p >Palavra Selecionada</p>
             <p>Descubra Qual A Palavra.</p>
             <form>
                 <input type="text">
                 <input type="button" value="Enviar">
-                <input type="button" value="Pular">
+                <input type="button" value="Pular" onclick="pular()">
             </form>
         </section>
+        <p>Score: <span id="score">0</span></p>
     </main>
+    <script src="logic.js"></script>
 </body>
 </html>
