@@ -10,10 +10,20 @@ function animationElement(seletor,name){
     let selector = document.querySelector(seletor);
     setInterval(function(){
         selector.style.animationName = name;    
-    },100);
+    });
     selector.style.animationName = "none";   
 }
 
+
+class Mp3{
+    constructor(){
+        this.next = new Audio("sound/next.mp3")
+    }
+    playPular(){
+        this.next.currentTime = 0.025;
+        this.next.play()
+    }
+}
 
 class Game{
 
@@ -36,12 +46,11 @@ class Game{
         this.embaralharPalavra();
         this.setTentativa(this.getTentativa() + 1);
         animationElement("p","next")
+        this.mp3.playPular()
     }
 
     jogar(){
-        if(this.getUser() == this.palavra){
-            this.acertar()
-        }
+        if(this.getUser() == this.palavra){ this.acertar() }
         else{ this.errar() }
     }
 
@@ -99,7 +108,8 @@ class Game{
         return this.user.value;
     }
 
-    constructor(){
+    constructor(mp3){
+        this.mp3 = mp3
         this.tentativa = document.getElementById("tentativa");
         this.score = document.getElementById("score");
         this.user = document.getElementById("user");
@@ -113,6 +123,7 @@ class Game{
 
 }
 
-let game = new Game();
+let mp3 = new Mp3()
+let game = new Game(mp3);
 
 document.body.onload = game.zerar();
