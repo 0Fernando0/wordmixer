@@ -16,60 +16,89 @@ main,section,body{
 
 body{
     background-color: lightblue;
-    justify-content: center;
+    justify-content: space-around;
     height: 100vh;
 }
 
 
+h1{
+    text-align: center;
+    font-size: 3em;
+    color: white;
+    text-shadow: 0px 0px 1px black;
+}
+
+section{
+    text-align: center;
+    background-color: cadetblue;
+    width: 500px;
+    color: white;
+    padding: 20px;
+    gap: 8px;
+    border-radius: 10px;
+    p:nth-child(1){
+        animation-duration: 0.3s;   
+        animation-timing-function: ease-in-out;         
+        background-color: aqua;
+        align-self: flex-end;
+        width: 100px;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 1.2em;
+    }
+    p:nth-child(2){
+        font-size: 2em;
+    }
+    
+}
+
+form{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+input{
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    height: 50px;
+    background-color: transparent;
+    border: 1px solid;
+}
+
+input[type=text]{
+    flex-basis: 100%;
+    font-size: 1em;
+    padding-left: 10px;
+}
+input[type=button]{
+    cursor: pointer;
+    flex-basis: calc(50% - 5px);
+    font-size: 1em;
+    transition: 1s;
+}
+
+
+input[type=button]:nth-child(2){
+    color: greenyellow;
+    &:hover{
+        background-color: greenyellow;
+        color: white;
+    }
+}
+
+input[type=button]:last-child{
+    color: rgb(255, 153, 0);
+    &:hover{
+        background-color: rgb(255, 153, 0);
+        color: white;
+    }
+}
 main{    
     align-items: center;
     gap: 20px;
-    h1{
-        text-align: center;
-        font-size: 3em;
-        color: white;
-    }
-    section{
-        text-align: center;
-        background-color: cadetblue;
-        width: 500px;
-        color: white;
-        padding: 20px;
-        gap: 8px;
-        border-radius: 10px;
-        p:nth-child(1){
-            animation-duration: 0.3s;   
-            animation-timing-function: ease-in-out;         
-            background-color: aqua;
-            align-self: flex-end;
-            width: 100px;
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 1.2em;
-        }
-        p:nth-child(2){
-            font-size: 2em;
-        }
-        form{
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            input{
-                border: none;
-                outline: none;
-                border-radius: 10px;
-                height: 50px;
-            }
-            input[type=text]{
-                flex-basis: 100%;
-                font-size: 1em;
-                padding-left: 10px;
-            }
-            input[type=button]{
-                flex-basis: calc(50% - 5px);
-            }
-        }
-    }
+    
     p:last-child{
         animation-duration: 1s;
         animation-timing-function: ease-in-out;
