@@ -1,3 +1,5 @@
+// import * from "/home/fernando/Programacao/Front-End/WordMixer/service";
+
 const PALAVRAS = [
     "terra",
     "agua",
@@ -16,13 +18,33 @@ function animationElement(seletor,name){
 
 
 class Mp3{
+
     constructor(){
-        this.next = new Audio("sound/next.mp3")
+        this.next = new Audio("sound/next.mp3");
+        this.gameover = new Audio("sound/gameover.mp3");
+        this.increase = new Audio("sound/acerto.mp3");
+        this._error = new Audio("sound/error.mp3")
     }
+    error(){
+        this._error.currentTime = 0;
+        this._error.play()
+    }
+
+    increasePoint(){
+        this.increase.currentTime = 0;
+        this.increase.play()
+    }
+
     playPular(){
         this.next.currentTime = 0.025;
         this.next.play()
     }
+
+    gameOver(){
+        this.gameover.currentTime = 0;
+        this.gameover.play()
+    }
+
 }
 
 class Game{
@@ -57,6 +79,7 @@ class Game{
     errar(){
         this.setTentativa(this.getTentativa() + 1);
         animationElement("p","next")
+        this.mp3.error()
     }
 
     acertar(){
@@ -65,6 +88,7 @@ class Game{
         this.user.focus();
         this.embaralharPalavra()
         animationElement("p:last-child","increase")
+        this.mp3.increasePoint()
     }
 
 
@@ -93,13 +117,18 @@ class Game{
     }
 
     getTentativa(){return Number(this.tentativa.textContent);}
+
+    endgame(){
+        this.mp3.gameOver();
+        alert("Fim De Jogo");
+        this.zerar()
+    }
+
     setTentativa(tentativa){
-        if(tentativa > 10){
-            alert("Fim De Jogo");
-            this.zerar()
-            return
+        if(tentativa > 10){this.endgame()}
+        else{
+            this.tentativa.textContent = tentativa;
         }
-        this.tentativa.textContent = tentativa;
     }
 
     getScore(){return Number(this.score.textContent);}
