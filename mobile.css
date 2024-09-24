@@ -10,7 +10,7 @@ main{
         width: 90%;
         form{
             flex-direction: column;
-            wrap: nowrap;
+            flex-wrap: nowrap;
             input{
                 padding: 10px;
             }
