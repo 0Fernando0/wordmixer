@@ -1,8 +1,8 @@
 const PALAVRAS = [
-    // "terra",
-    // "agua",
+    "terra",
+    "agua",
     "fogo",
-    // "vento"
+    "vento"
 ];
 const SCORE_INCREASE = 20;
 
