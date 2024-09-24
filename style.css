@@ -11,13 +11,13 @@
 
 main,section,body{
     display: flex;
-    flex-direction: column;
+    flex-flow: column nowrap;
 }
 
 body{
     background-color: lightblue;
     justify-content: space-around;
-    height: 100vh;
+    height: 100dvh;
 }
 
 
@@ -54,7 +54,7 @@ section{
 
 form{
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     gap: 5px;
 }
 
