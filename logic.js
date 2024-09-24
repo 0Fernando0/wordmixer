@@ -62,9 +62,11 @@ class Game{
         this.setScore(0)
         this.setUser("")
         this.embaralharPalavra();
+        this.user.focus();
     }
     
     pular(){
+        this.user.focus();
         this.embaralharPalavra();
         this.setTentativa(this.getTentativa() + 1);
         animationElement("p","next")
@@ -72,6 +74,7 @@ class Game{
     }
 
     jogar(){
+        this.user.focus();
         if(this.getUser() == this.palavra){ this.acertar() }
         else{ this.errar() }
     }
@@ -134,7 +137,8 @@ class Game{
     getScore(){return Number(this.score.textContent);}
 
     getUser(){
-        return this.user.value;
+        const textlower = String(this.user.value).toLowerCase();
+        return textlower;
     }
 
     constructor(mp3){
