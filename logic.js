@@ -1,11 +1,12 @@
-// import * from "/home/fernando/Programacao/Front-End/WordMixer/service";
+const BASE_URL = "https://api-palavras-production.up.railway.app/random";
+async function getWord(){
+    const response = await fetch(BASE_URL);
+    const data = await response.json();
+    const word = JSON.stringify(data);
+    const word_format = word.substring(1,word.length - 1);
+    return word_format;
+} 
 
-const PALAVRAS = [
-    "terra",
-    "agua",
-    "fogo",
-    "vento"
-];
 const SCORE_INCREASE = 20;
 
 function animationElement(seletor,name){
@@ -95,7 +96,7 @@ class Game{
     }
 
 
-    embaralharPalavra(){
+    async embaralharPalavra(){
         function embaralhar(palavra){
             function shuffle(o) {
                 for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
@@ -110,7 +111,7 @@ class Game{
             }
             return palavra_embaralhada;
         }
-        const random = PALAVRAS[Math.floor(Math.random() * PALAVRAS.length)];
+        const random = await getWord();
         this.palavra = random;
         let palavra_gerada = embaralhar(random);
         while(palavra_gerada == this.palavra){
