@@ -138,7 +138,7 @@ class Game{
     getScore(){return Number(this.score.textContent);}
 
     getUser(){
-        const textlower = String(this.user.value).toLowerCase();
+        const textlower = String(this.user.value).toLowerCase().trim();
         return textlower;
     }
 
