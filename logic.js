@@ -161,3 +161,8 @@ let mp3 = new Mp3()
 let game = new Game(mp3);
 
 document.body.onload = game.zerar();
+document.getElementById("user").addEventListener("keypress",(tecla) => {
+    if(tecla.key == "Enter"){
+        game.jogar()
+    }
+})
