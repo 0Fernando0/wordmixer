@@ -8,7 +8,7 @@ header{
 main{
     section{
         width: 90%;
-        form{
+        div{
             flex-flow: column nowrap;
             input{
                 padding: 10px;
